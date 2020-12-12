@@ -26,7 +26,7 @@ router.post('/', authorize,  (request, response) => {
 
     // Endpoint to create a new post
     let params = {
-        userId: 1,
+        userId: request.currentUser.id,
         text: request.body.text,
         media: {
             type: request.body.media.type,
@@ -45,7 +45,7 @@ router.post('/', authorize,  (request, response) => {
 router.put('/:postId/likes', authorize, (request, response) => {
 
     // Endpoint for current user to like a post
-    PostModel.like(1, request.params.postId, () => {
+    PostModel.like(request.currentUser.id, request.params.postId, () => {
         response.json({
             ok: true
         })
@@ -56,7 +56,7 @@ router.put('/:postId/likes', authorize, (request, response) => {
 router.delete('/:postId/likes', authorize, (request, response) => {
 
     // Endpoint for current user to unlike a post
-    PostModel.unlike(1, request.params.postId, () => {
+    PostModel.unlike(request.currentUser.id, request.params.postId, () => {
         response.json({
             ok: true
         })
