@@ -2,6 +2,7 @@ import {mount, createLocalVue} from '@vue/test-utils'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import Posts from "../../src/components/Posts.vue";
+import moment from "moment";
 
 const localVue = createLocalVue();
 
@@ -100,7 +101,7 @@ describe('Posts', () => {
 
     const wrapper = mount(Posts, {router, store, localVue});
 
-    it('count', function () {
+    it('display posts', function () {
         const posts = wrapper.findAll('.post')
         expect(posts).toHaveLength(testData.length)
     });
@@ -119,5 +120,11 @@ describe('Posts', () => {
         const hasVideo = posts.at(2)
         expect(testData[2].media.type).toBe("video");
         expect(hasVideo.find('.post-image video').exists()).toBe(true)
+    });
+
+    it('date format', function () {
+        const createTime = moment(testData[0].createTime).format('LLLL')
+        const post = wrapper.find('.post')
+        expect(post.find('.post-author > small').text()).toEqual(createTime)
     });
 });
