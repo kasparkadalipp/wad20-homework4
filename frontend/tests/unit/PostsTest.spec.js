@@ -104,4 +104,20 @@ describe('Posts', () => {
         const posts = wrapper.findAll('.post')
         expect(posts).toHaveLength(testData.length)
     });
+
+    it('display media', function () {
+        const posts = wrapper.findAll('.post')
+
+        const hasImage = posts.at(0)
+        expect(testData[0].media.type).toBe("image");
+        expect(hasImage.find('.post-image img').exists()).toBe(true);
+
+        const noMedia = posts.at(1)
+        expect(testData[1].media).toBe(null);
+        expect(noMedia.find('.post-image').exists()).toBe(false);
+
+        const hasVideo = posts.at(2)
+        expect(testData[2].media.type).toBe("video");
+        expect(hasVideo.find('.post-image video').exists()).toBe(true)
+    });
 });
