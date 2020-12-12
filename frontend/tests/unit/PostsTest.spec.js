@@ -100,7 +100,8 @@ describe('Posts', () => {
 
     const wrapper = mount(Posts, {router, store, localVue});
 
-    it('1 == 1', function () {
-        expect(true).toBe(true)
+    it('count', function () {
+        const posts = wrapper.findAll('.post')
+        expect(posts).toHaveLength(testData.length)
     });
 });
