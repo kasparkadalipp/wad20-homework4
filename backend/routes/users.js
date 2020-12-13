@@ -86,13 +86,7 @@ router.post('/login', (request, response) => {
             lastname: user.lastname,
             email: user.email,
             avatar: user.avatar,
-            accessToken: jwt.createAccessToken({
-                id: user.id,
-                firstname: user.firstname,
-                lastname: user.lastname,
-                email: user.email,
-                avatar: user.avatar,
-            }) // THis is the place where you should pass generated access token
+            accessToken: jwt.createAccessToken({id: user.id})
         })
     });
 });
