@@ -13,7 +13,7 @@ const jwt = {
         try {
             return JsonWebToken.verify(token, SECRET);
         } catch (err) {
-            return false;
+            return err;
         }
     }
 };
