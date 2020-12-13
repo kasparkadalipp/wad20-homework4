@@ -34,7 +34,7 @@ router.post('/', authorize,  (request, response) => {
         },
     }
     if (params.text === null && (params.media.type === null || params.media.url === null)) {
-        response.json([])
+        response.status(400).json([])
     } else {
         PostModel.create(params, () => {
             response.status(201).json({
