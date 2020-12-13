@@ -13,7 +13,7 @@ Vue.use(VueRouter);
 Vue.use(Vuex);
 
 axios.defaults.baseURL = 'http://localhost:3000/';
-// axios.defaults.headers.common['Authorization'] = 'Bearer ';
+axios.defaults.headers.common['Authorization'] = 'Bearer ';
 
 const store = new Vuex.Store({
     state: {
@@ -35,7 +35,7 @@ const store = new Vuex.Store({
             axios
                 .defaults
                 .headers
-                .common['Authorization'] = localStorage.getItem('accessToken');
+                .common['Authorization'] = 'Bearer ' + localStorage.getItem('accessToken');
         }
     },
     getters: {

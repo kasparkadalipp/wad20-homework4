@@ -9,7 +9,7 @@ module.exports = (request, response, next) => {
         it here using 'jsonwebtoken' dependency. Then set request.currentUser as
         decoded user from access token.
     */
-    const token = jwt.verifyAccessToken(request.headers.authorization)
+    const token = jwt.verifyAccessToken(request.headers.authorization.replace('Bearer ',''))
     if (token) {
         UserModel.getById(token.id, (user) => {
             request.currentUser = user;
