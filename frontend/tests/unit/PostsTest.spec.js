@@ -2,7 +2,6 @@ import {mount, createLocalVue} from '@vue/test-utils'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import Posts from "../../src/components/Posts.vue";
-import moment from "moment";
 
 const localVue = createLocalVue();
 
@@ -123,8 +122,9 @@ describe('Posts', () => {
     });
 
     it('date format', function () {
-        const createTime = moment(testData[0].createTime).format('LLLL')
+        const createTime = testData[0].createTime
+        expect(createTime).toBe("2020-12-05 13:53:23")
         const post = wrapper.find('.post')
-        expect(post.find('.post-author > small').text()).toEqual(createTime)
+        expect(post.find('.post-author > small').text()).toBe("Saturday, December 5, 2020 1:53 PM")
     });
 });
